@@ -3,6 +3,7 @@ package redis
 import (
 	"bytes"
 	errs "errors"
+	"overlord/proxy/proto"
 	"sync"
 	"unsafe"
 )
@@ -79,6 +80,11 @@ func newReq() *Request {
 	r.resp = &resp{}
 	r.reply = &resp{}
 	return r
+}
+
+// Slowlog impl the Slowloger interface
+func (r *Request) Slowlog() *proto.SlowlogEntry {
+	return nil
 }
 
 // CmdString get the cmd
